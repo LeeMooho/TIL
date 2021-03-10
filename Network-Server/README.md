@@ -2,6 +2,9 @@
 
 
 * [단편지식](#단편지식)
+* [REST API](#REST-API)
+* [GraphQL](#GraphQL)
+
 
 
 [뒤로](https://github.com/LeeMooho/TIL)
@@ -21,6 +24,29 @@
 * DHCP(dynamic host configuration protocol) 사설 아이피와 DNS 아이피를 자동으로 지정해준다. 
 * 공유기는 DHCP 서버가 깔려있고 각 네트워크 장비들은 DHCP 클라이언트가 있다. [8c:85:90:0c:cc] 와 같은 걸로 공유기와 클라이언트가 서로 식별할 수 있다.
 
+
+[뒤로](https://github.com/LeeMooho/TIL)/[위로](#Network-Server)
+
+## REST API
+
+* HTTP Method 
+    * get 데이터 조회
+    * post 새로운 데이터 추가 
+    * put 데이터 전체 수정
+    * patch 데이터 일부 수정
+    * delete 정보 삭재  
+
+* REST API에 정보를 요청하면 필요없는 정보까지 받아버린다.
+* 다른 객체에 저장된 정보라면 필요한 URI에 하나하나 요청해야한다. 
+* REST API가 유리한 점은 받아야하는 정보가 정해져있다면 여러 항목을 적는 GraphQL보다는 URI 한줄로 해결 가능한 REST API가 좋다.
+* 현재의 REST API는 완벽한 의미의 REST API가 아니다. self-description, HATEOAS하지 않는다. 전자는 IANA에 미디어 타입을 등록하여 명세를 만들어 KEY에 의미를 부여한다. 혹은 profile을 링크에 담아서 같이 통신한다. 후자는 링크를 담아 만족시킬 수 있다.
+
+[뒤로](https://github.com/LeeMooho/TIL)/[위로](#Network-Server)
+
+## GraphQL
+
+* GraphQL로 업데이트 삭제는 mutation으로 서버개발자가 구현한 클래스를 이용하여 한다.
+* 둘중 어느 것을 사용할 지 고민된다면 둘 다 사용해도 괜찮다.
 
 
 
