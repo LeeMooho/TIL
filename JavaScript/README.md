@@ -1,8 +1,6 @@
 # Index of JavaScript
 
-* [async 메소드](#async-메소드)
-* [defer 메소드](#defer-메소드)
-* [guessField 메소드](#guessField-메소드)
+* [동기 비동기](#동기-비동기)
 * [Math 메소드](#Math-메소드)
 * [UI / UX](#UI-/-UX)
 * [DOM 객체](#DOM-객체)  
@@ -21,21 +19,56 @@
 
 [뒤로](https://github.com/LeeMooho/TIL)
 
+## 동기 비동기
+* async 메소드는 자바스크립트가 다운받는 대로 html과 별개로 실행.
 
-## async 메소드
-async 함수는 자바스크립트가 다운받는 대로 html과 별개로 실행.
+* defer 메소드는 자바스크립트에 순서에 따라서 실행.
 
-[뒤로](https://github.com/LeeMooho/TIL)/[위로](#index-of-JavaScript)
+* 콜백함수란 나중에 다시 호출하는 함수. 동기콜백함수와 비동기콜백함수가 존재한다. 
 
+* 동기 콜백함수 
+```
+function printImmediatley(print) {print()}
+printImmediatley( () => console.log(‘hello’)); 
+```
 
-## defer 메소드
-defer는 자바스크립트에 순서에 따라서 실행.
+* 비동기 콜백 함수
+```
+function printlate(print) {setTimeout(print, timeout)}
+printlate( () => console.log(‘hello’)); 
+```
 
-[뒤로](https://github.com/LeeMooho/TIL)/[위로](#index-of-JavaScript)
+* promise로 비동기 함수를 부를 때 유용하게 사용할 수 있다.  
 
-## guessField 메소드
-guessField.focus()
-자동으로 커서를 페이지가 로딩되자마자 텍스트 필드에 위치시킨다.
+* promise
+
+```
+state: pending -> fulfilled or rejected
+```
+* producer 
+```
+producer
+resolve는 정상작동시 콜백함수, reject는 에러발생시 함수,
+const promise = new Promise((resolve, reject)=>{
+	/// doing some heavy work(네트워크에서 파일을 다운받거나 파일에서 데이터를 읽어오는 것등.)
+resolve(‘’);
+reject(new Error(‘’no network)) //resolve와 reject둘중 하나만 있어야한다.
+}
+)
+중요 promise를 만드는 순간, resolve가 바로 실행되니 이름 염두하고 작성해야한다.
+```
+
+* consumer
+```
+consumer: then, catch, finally
+promise.then((value) => {
+ value의 활용, value는 producer에서 나온다.
+}); 
+.catch(error=>{
+console.log(error);
+})
+```
+* 
 
 [뒤로](https://github.com/LeeMooho/TIL)/[위로](#index-of-JavaScript)
 
@@ -50,6 +83,9 @@ Math.floor() -> 10진수 버림.
 * late binding를 사용하지 않고 자바스크립트를 사용시에는 window.onload = function(){} 함수는 웹브라우저의 모든 구성요소에 대한 로드가 끝났을 때 브라우저에 의해서 호출되는 함수을 사용한다. 혹은 script 태그를 문서 하단에 위치
 * prompt('') 사용자가 입력된 값을 리턴 받을 수 있다.
 * 새창을 버튼을 클릭하지 않고 그냥 띄어버리면 팝업으로 제한당할 수도 있다.
+* guessField 메소드
+guessField.focus()
+자동으로 커서를 페이지가 로딩되자마자 텍스트 필드에 위치시킨다.
 
 [뒤로](https://github.com/LeeMooho/TIL)/[위로](#index-of-JavaScript)
 
@@ -359,6 +395,10 @@ $('#target').off('focus blur', handler);
 * '문자열' + 변수명 + |n 줄바굼 '문자열' 이런 글을 `문자열 ${변수명} 문자열` 이렇게 바꿀 수 있다.
 * console.dir(location); 으로 모든 프로퍼티를 열람가능.
 * 기능테스트 사용하려는 javascript기능이 다른 버전, 다른 브라우저에서 지원하는 지 확인하는 것. 만일 지원하지 않는다면 그러한 함수를 직접만들어서 사용해야하지만 속도는 느려짐.
+* hoisting var, function을 먼저 선언하는 것.
+* setTimeout() 브라우저의 api로 정해진 시간 후에 함수를 호출
+* funtion() {내용}   은 arrow function으로 선언할 필요없다. ()=>내용
+
 
 [뒤로](https://github.com/LeeMooho/TIL)/[위로](#index-of-JavaScript)
 

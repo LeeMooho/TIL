@@ -89,6 +89,7 @@ style="@style/Widget.TipTime.TextView"
 
 ## Debugging
 * 안드로이드 스튜디오 하단의 logcat을 통해 디버그를 하며 null일 때 crash가 발생하나 kotlin은 null에 대처하는 메소드들을 가지고 있다. toDoubleOrNull()와 같은...
+* 이미지view에 onclick 이벤트가 안되는 현상. 함수의 접근제한자를 public으로 변경.
 
 
 [뒤로](https://github.com/LeeMooho/TIL)/[위로](#index-of-android-studio-/-kotlin) 
@@ -112,6 +113,41 @@ if (savedInstanceState != null) {
 revenue = savedInstanceState.getInt(KEY_REVENUE, 0)
 
 }
+```
+* 액티비티에서 데이터 전달
+```
+MAIN
+    fun open_black_letter(view : View){
+        var intent = Intent(this, Quest::class.java)
+        intent.putExtra("color","black")
+        startActivity(intent)
+    }
+
+받을 떄
+when(intent.getStringExtra("color")){
+}
+
+```
+
+* 프래그먼트에서 데이터 전달
+```
+프레그먼트 데이터 전달
+  supportFragmentManager.beginTransaction().replace(
+    R.id.fragment_my_container,
+    MyFragment().apply {
+      arguments = Bundle().apply { 
+        putString("KEY", "value")
+      }
+    }
+  ).commit()
+
+ 받을 때는 
+
+override fun onCreate(savedInstanceState: Bundle?) {
+  super.onCreate(savedInstanceState)
+  Log.d("data : ", arguments?.getString("KEY"))
+}
+
 ```
 
 [뒤로](https://github.com/LeeMooho/TIL)/[위로](#index-of-android-studio-/-kotlin) 
